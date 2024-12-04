@@ -57,5 +57,45 @@ export const sampleCoffees: Coffee[] = [
     isOpen: false,
     idealRestingTime: 3,
     notes: 'Full body, earthy, dark chocolate'
+  },
+  {
+    id: '4',
+    name: 'Kenya AA',
+    roaster: {
+      name: 'Glitch',
+      country: { code: 'GB', name: 'United Kingdom' }
+    },
+    origin: 'Kenya',
+    producer: 'Finca Vista Hermosa',
+    varietal: 'SL-28',
+    roastDate: '2024-01-05',
+    roastLevel: 'light',
+    price: 22.00,
+    weight: 250,
+    remainingWeight: 0,
+    isOpen: true,
+    idealRestingTime: 2,
+    notes: 'Blackcurrant, bergamot, and brown sugar',
+    finishedDate: '2024-02-15'
+  },
+  {
+    id: '5',
+    name: 'Guatemala Antigua',
+    roaster: {
+      name: 'Kerb Collective',
+      country: { code: 'AU', name: 'Australia' }
+    },
+    origin: 'Guatemala',
+    producer: 'Finca El Socorro',
+    varietal: 'Bourbon',
+    roastDate: '2024-01-10',
+    roastLevel: 'medium',
+    price: 19.50,
+    weight: 340,
+    remainingWeight: 0,
+    isOpen: true,
+    idealRestingTime: 2,
+    notes: 'Milk chocolate, orange, and caramel',
+    finishedDate: '2024-02-20'
   }
 ];

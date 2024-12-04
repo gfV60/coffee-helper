@@ -16,6 +16,7 @@ export interface Coffee {
   notes?: string;
   isOpen: boolean;
   idealRestingTime: number;
+  finishedDate?: string;
 }
 
 export function calculateBestOpenDate(roastDate: string, restingTime: number): Date {

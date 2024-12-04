@@ -4,6 +4,7 @@ import { BrewingParameters } from './types/brew';
 import { CoffeeForm } from './components/CoffeeForm';
 import { CoffeeList } from './components/CoffeeList';
 import { SupplyAlert } from './components/SupplyAlert';
+import { CoffeeHistory } from './components/CoffeeHistory';
 import { OptionsProvider } from './context/OptionsContext';
 import { sampleCoffees } from './data/sampleCoffees';
 
@@ -31,9 +32,11 @@ function App() {
     
     setCoffees(prev => prev.map(coffee => {
       if (coffee.id === brew.coffeeId) {
+        const newRemainingWeight = (coffee.remainingWeight || coffee.weight) - brew.doseWeight;
         return {
           ...coffee,
-          remainingWeight: (coffee.remainingWeight || coffee.weight) - brew.doseWeight,
+          remainingWeight: newRemainingWeight,
+          ...(newRemainingWeight <= 0 ? { finishedDate: new Date().toISOString() } : {})
         };
       }
       return coffee;
@@ -52,6 +55,8 @@ function App() {
     }));
   };
 
+  const activeCoffees = coffees.filter(coffee => !coffee.finishedDate);
+
   return (
     <OptionsProvider>
       <div className="min-h-screen bg-gray-100">
@@ -61,12 +66,13 @@ function App() {
             
             <div className="space-y-8">
               <CoffeeForm onSubmit={handleAddCoffee} />
-              <SupplyAlert coffees={coffees} />
+              <SupplyAlert coffees={activeCoffees} />
               <CoffeeList 
-                coffees={coffees}
+                coffees={activeCoffees}
                 onAddBrew={handleAddBrew}
                 onOpenCoffee={handleOpenCoffee}
               />
+              <CoffeeHistory coffees={coffees} />
             </div>
           </div>
         </div>
