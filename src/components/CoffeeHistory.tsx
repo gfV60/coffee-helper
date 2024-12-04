@@ -1,4 +1,3 @@
-import React from 'react';
 import { Coffee } from '../types/coffee';
 import { Archive } from 'lucide-react';
 import { roastLevelLabels } from '../types/roastLevel';

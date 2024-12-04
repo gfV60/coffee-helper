@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Coffee } from './types/coffee';
 import { BrewingParameters } from './types/brew';
 import { CoffeeForm } from './components/CoffeeForm';
@@ -10,7 +10,7 @@ import { sampleCoffees } from './data/sampleCoffees';
 
 function App() {
   const [coffees, setCoffees] = useState<Coffee[]>(sampleCoffees);
-  const [brews, setBrews] = useState<BrewingParameters[]>([]);
+  const [_brews, setBrews] = useState<BrewingParameters[]>([]);
 
   const handleAddCoffee = (newCoffee: Omit<Coffee, 'id' | 'remainingWeight' | 'isOpen'>) => {
     const coffee: Coffee = {
