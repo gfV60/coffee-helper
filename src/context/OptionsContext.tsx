@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { DynamicOptions, OptionsContextType } from '../types/options';
 import { countries } from '../types/country';
+import { Roaster } from '../types/roaster';
 
 const initialOptions: DynamicOptions = {
   origins: [
@@ -34,6 +35,12 @@ const initialOptions: DynamicOptions = {
     'Red Bourbon', 'Red Caturra', 'Red Catuai', 'Sidra', 'SL-14',
     'SL-28', 'SL-34', 'Tabi', 'Typica', 'Yellow Bourbon',
     'Yellow Caturra', 'Yellow Catuai'
+  ],
+  processes: [
+    'Washed', 'Natural', 'Honey', 'Anaerobic Natural', 'Anaerobic Washed',
+    'Carbonic Maceration', 'Double Fermentation', 'Extended Fermentation',
+    'Wet Hulled', 'Wine Process', 'Experimental', 'Semi-Washed',
+    'Black Honey', 'Red Honey', 'Yellow Honey', 'White Honey'
   ]
 };
 

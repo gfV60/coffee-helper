@@ -66,6 +66,11 @@ export function CoffeeList({ coffees, onAddBrew, onOpenCoffee }: CoffeeListProps
                     <dt className="text-sm font-medium text-gray-500">Varietal</dt>
                     <dd className="text-sm text-gray-900">{coffee.varietal}</dd>
                   </div>
+
+                  <div>
+                    <dt className="text-sm font-medium text-gray-500">Process</dt>
+                    <dd className="text-sm text-gray-900">{coffee.process}</dd>
+                  </div>
                   
                   <div>
                     <dt className="text-sm font-medium text-gray-500">Roast Date</dt>

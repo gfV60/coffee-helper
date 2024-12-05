@@ -5,6 +5,7 @@ export interface DynamicOptions {
   producers: string[];
   roasters: Roaster[];
   varietals: string[];
+  processes: string[];
 }
 
 export interface OptionsContextType {

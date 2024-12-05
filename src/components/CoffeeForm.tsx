@@ -19,6 +19,7 @@ export function CoffeeForm({ onSubmit }: CoffeeFormProps) {
     origin: '',
     producer: '',
     varietal: '',
+    process: '',
     roastDate: '',
     roastLevel: RoastLevels.MEDIUM as RoastLevel,
     price: '',
@@ -38,6 +39,7 @@ export function CoffeeForm({ onSubmit }: CoffeeFormProps) {
       origin: formData.origin,
       producer: formData.producer,
       varietal: formData.varietal,
+      process: formData.process,
       roastDate: formData.roastDate,
       roastLevel: formData.roastLevel,
       price: Number(formData.price),
@@ -53,6 +55,7 @@ export function CoffeeForm({ onSubmit }: CoffeeFormProps) {
       origin: '',
       producer: '',
       varietal: '',
+      process: '',
       roastDate: '',
       roastLevel: RoastLevels.MEDIUM,
       price: '',
@@ -120,6 +123,16 @@ export function CoffeeForm({ onSubmit }: CoffeeFormProps) {
           options={options.varietals}
           onChange={(value) => handleChange('varietal', value)}
           onAddNew={(value) => addOption('varietals', value)}
+        />
+
+        <Autocomplete
+          name="process"
+          label="Process"
+          required
+          value={formData.process}
+          options={options.processes}
+          onChange={(value) => handleChange('process', value)}
+          onAddNew={(value) => addOption('processes', value)}
         />
 
         <div>

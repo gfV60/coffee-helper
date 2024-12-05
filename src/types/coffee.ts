@@ -8,6 +8,7 @@ export interface Coffee {
   origin: string;
   producer: string;
   varietal: string;
+  process: string;
   roastDate: string;
   roastLevel: RoastLevel;
   price: number;
