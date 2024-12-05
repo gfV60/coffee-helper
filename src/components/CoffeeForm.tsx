@@ -27,14 +27,21 @@ export function CoffeeForm({ onSubmit }: CoffeeFormProps) {
     idealRestingTime: '2',
     notes: ''
   });
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!formData.roaster) return;
+    
+    // Validate that at least one of name or producer is filled
+    if (!formData.name.trim() && !formData.producer.trim()) {
+      setError('Either Coffee Name or Producer must be filled');
+      return;
+    }
 
     const coffee = {
-      name: formData.name,
+      name: formData.name.trim() || formData.producer.trim(), // Use producer as name if name is empty
       roaster: formData.roaster,
       origin: formData.origin,
       producer: formData.producer,
@@ -49,6 +56,7 @@ export function CoffeeForm({ onSubmit }: CoffeeFormProps) {
     };
     
     onSubmit(coffee);
+    setError(null);
     setFormData({
       name: '',
       roaster: null,
@@ -67,20 +75,33 @@ export function CoffeeForm({ onSubmit }: CoffeeFormProps) {
 
   const handleChange = (name: string, value: string | Roaster) => {
     setFormData(prev => ({ ...prev, [name]: value }));
+    setError(null); // Clear error when user makes changes
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-900">Add New Coffee</h2>
       
+      {error && (
+        <div className="rounded-md bg-red-50 p-4">
+          <div className="flex">
+            <div className="text-sm text-red-700">
+              {error}
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Coffee Name</label>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Coffee Name
+            <span className="text-gray-500 text-xs ml-1">(optional - will use Producer name if empty)</span>
+          </label>
           <input
             type="text"
             name="name"
             id="name"
-            required
             value={formData.name}
             onChange={(e) => handleChange('name', e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
@@ -108,7 +129,7 @@ export function CoffeeForm({ onSubmit }: CoffeeFormProps) {
         <Autocomplete
           name="producer"
           label="Producer"
-          required
+          required={!formData.name.trim()} // Required only if name is empty
           value={formData.producer}
           options={options.producers}
           onChange={(value) => handleChange('producer', value)}
